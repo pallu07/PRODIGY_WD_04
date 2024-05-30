@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BCa Student</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-family: Arial, sans-serif;
+			background-image: url(./images.jpeg);
+			background-size: cover;
+			background-position: center;
+		}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 2rem;
+		}
+		header {
+			background-color: rgba(0, 0, 0, 0.5);
+			color: #fff;
+			padding: 1rem;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 1000;
+		}
+		header ul {
+			list-style-type: none;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		header li {
+			margin: 0 1rem;
+		}
+		header a {
+			color: #2cee36;
+			text-decoration: none;
+			padding: 0.5rem 1rem;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		}
+		header a:hover {
+			background-color: #fff;
+			color: #333;
+		}
+		main {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			margin: 2rem;
+			padding: 2rem;
+			background-color: rgba(255, 255, 255, 0.8);
+			border-radius: 4px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			position: relative;
+			top: 80px;
+		}
+		main .card {
+			background-color: #fff;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			flex-basis: calc(31% - 2rem);
+			margin-bottom: 2rem;
+			padding: 1rem;
+		}
+		main .card h2 {
+			margin: 0 0 1rem;
+		}
+		main .card p {
+			margin: 0;
+		}
+		@media (max-width: 1200px) {
+		main .card {
+				flex-basis: calc(48% - 2rem);
+			}
+		}
+		@media (max-width: 768px) {
+			main .card {
+				flex-basis: 100%;
+			}
+		}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const menuItems = document.querySelectorAll('header a');
+			const mainContent = document.querySelector('main');
+			const observer = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						menuItems.forEach(item => {
+							if (item.hash === entry.target.id) {
+								item.classList.add('active');
+							} else {
+								item.classList.remove('active');
+							}
+						});
+					}
+				});
+			});
+			menuItems.forEach(item => {
+				item.addEventListener('click', e => {
+					e.preventDefault();
+					const target = document.querySelector(item.hash);
+					observer.unobserve(mainContent);
+					observer.observe(target);
+					target.scrollIntoView({ behavior: 'smooth' });
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<header>
+		<ul>
+			<li><a href="#about">About Me</a></li>
+			<li><a href="#skills">My Skills</a></li>
+			<li><a href="#Personal detail">Personal detail</a></li>
+		</ul>
+	</header>
+	<main>
+		<section id="about" class="card">
+			<h2>About Me</h2>
+			<p>As a BCA (Bachelor of Computer Applications) student, I am diving into the world of computer science and its applications. We likely studying programming languages, databases, software development, and various computer-related subjects. BCA typically provides a blend of theoretical knowledge and practical skills, preparing you for careers in software development, IT consulting, systems analysis, and more. You're honing your problem-solving abilities and learning to think logically to tackle real-world technological challenges
+		</section>
+		<section id="skills" class="card">
+			<h2>My Skills</h2>
+			<p>HTML/CSS, JavaScript, React, Node.js, MongoDB</p>
+		</section>
+		<section id="Personal detail" class="card">
+			<h2>Personal details</h2>
+      <p>Name:Pallavi Kumari</p><br>
+      <p>Phone no:794773888</p><br>
+      <p>Email:PallaviKumari@123gmail.com</p><br>
+      <p>State:Karntaka</p><br>
+
+
+		</section>
+	</main>
+</body>
+</html>
